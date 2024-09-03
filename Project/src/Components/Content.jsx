@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import imageCompression from "browser-image-compression";
 import jsPDF from "jspdf";
-import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 export default function Content() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -78,19 +77,7 @@ export default function Content() {
         reader.readAsDataURL(select);
     };
 
-    const convertToExcel = () => {
-        if (!select) return;
 
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const imgData = event.target.result;
-            const worksheet = XLSX.utils.aoa_to_sheet([["Image"], [imgData]]);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-            XLSX.writeFile(workbook, "converted-image.xlsx");
-        };
-        reader.readAsDataURL(select);
-    };
     return (
         <div
             className="min-h-screen bg-cover bg-center  text-center  "
@@ -98,8 +85,8 @@ export default function Content() {
         >
             <h1 className='font-bold text-4xl'>Steps follow to compress the image:-</h1>
             <br />
-            <h1 className='text-xl font-bold text-red-500 '>1. Upload the Image</h1>
-            <h1 className='text-xl font-bold text-green-400 '>2. Click on Compress the image button</h1>
+            <h1 className='text-xl font-bold text-white '>1. Upload the Image</h1>
+            <h1 className='text-xl font-bold text-purple-600 '>2. Click on Compress the image button</h1>
             <h1 className='text-xl font-bold text-blue-800 '>3. Download the image</h1>
             <div className="container mx-auto p-4">
                 <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -137,8 +124,8 @@ export default function Content() {
             <br />
             <h1 className='font-bold text-4xl'>Steps follow to convert  the image into Pdf,Word,Excel:-</h1>
             <br />
-            <h1 className='text-xl font-bold text-red-500 '>1. Upload the Image</h1>
-            <h1 className='text-xl font-bold text-green-400 '>2. Click on Format which you want to Convert</h1>
+            <h1 className='text-xl font-bold text-white '>1. Upload the Image</h1>
+            <h1 className='text-xl font-bold text-purple-600 '>2. Click on Format which you want to Convert</h1>
             <h1 className='text-xl font-bold text-blue-800 '>3. Download the image</h1>
             <div className="container mx-auto p-4">
                 <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
@@ -166,13 +153,7 @@ export default function Content() {
                         Convert to Word
                     </button>
 
-                    <button
-                        onClick={ convertToExcel }
-                        className="w-full bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-                        disabled={ !select }
-                    >
-                        Convert to Excel
-                    </button>
+
                 </div>
             </div>
         </div>
