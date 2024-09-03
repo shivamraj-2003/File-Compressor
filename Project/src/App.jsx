@@ -1,11 +1,12 @@
 
 import './App.css'
+import Content from './Components/Content'
 
 function App() {
 
   return (
     <>
-      <h1 className='text-center font-semibold'>Welcome Shivam!</h1>
+      <Content />
     </>
   )
 }
